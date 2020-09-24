@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+
+
+  <div id="app">
+    <p>{{message}}</p>
+    <p>{{sayHi()}}</p>
+    <p v-text='unko'></p>
+    <a :href='url'>google</a>
+    <p>現在{{number}}回クリックされている</p>
+    <button v-on:click='coutUP(2)'>カウントアップ</button>
+    <p v-on:mousemove='cange(3, $event)'>マウスを乗せてくダサい<span v-on:mousemove.stop>反応しないで苦dsあい</span></p>
+    <p>{{x}}、、{{y}}</p>
+    <a :href="url" @click.prevent>google</a>
+    <input type="text" @keyup.enter="myAlert">
+    <hr>
+    <h1>{{message}}</h1>
+    <input type="text" v-model='message'>
+    <input type="text" v-model='unko'>
+    <hr>
+    <p>{{number}}</p>
+    <button @click='number += 1'>+1</button>
+    <p>{{lessThan2()}}</p>
+    <p>{{lessThan}}</p>
+    <hr>
+    <h2 :style="[styleObj, bassSt]">こんにちは</h2>
+  </div>
+
+  <script>
+    new Vue({
+      el: '#app',
+      data: {
+        message: 'hello',
+        unko: 'おい',
+        url: "https://google.com",
+        number: 0,
+        x: 0,
+        y: 0,
+        styleObj:{
+          color: 'red',
+          'background-color': 'blue'
+        },
+        bassSt: {
+          'font-size':'60px'
+        }
+      },
+      methods: {
+        sayHi: function () {
+          return this.message;
+        },
+        coutUP: function (times) {
+          this.number += 1 * times
+        },
+        cange: function (num, event) {
+          this.x = event.clientX / num;
+          this.y = event.clientY;
+        },
+        myAlert: function () {
+          alert('エンター押したな？？');
+        },
+        lessThan2: function(){
+          return this.number > 3 ? '3より上' : '3よりした'
+        }
+      },
+      computed: {
+        lessThan: function(){
+          return this.number > 3 ? '3より上' : '3よりした'
+        },
+        
+      }
+    })
+  </script>
+</body>
+
+</html>
+
+<!-- v-bindは:で省略可能 -->
+<!-- v-onは@で省略可能 -->
+<!-- v-onだとmethod使った方が良い？ -->

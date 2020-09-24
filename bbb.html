@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+
+  <div id="app1">
+    <p>{{message}}</p>
+    <p>{{name}}</p>
+    <p>{{myData}}</p>
+  </div>
+  <hr>
+  <div id="app2">
+    <h1>こんにちは{{message}}</h1>
+  </div>
+  <div id="app3">
+    
+  </div>
+
+
+ 
+
+
+  <script>
+
+    let data = {
+        message: 'インスタンス1',
+        name: '太郎'
+      }
+
+    let vm1 = new Vue({
+      el: '#app1',
+      data: data,
+      computed: {
+        myData: function(){
+          return this.$data
+        }
+      }
+    })
+
+
+  </script>
+
+
+  <script>
+   let vm2 = new Vue({
+      el: '#app2',
+      data: {
+        message: 'インスタンス2'
+      },
+      methods: {
+        change: function(){
+          vm1.message = '書き換えられmした'
+        }
+      }
+    })
+
+    
+  </script>
+
+</body>
+
+</html>

@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+
+
+
+  <div id="app1">
+    <hi></hi>
+    <hi></hi>
+    <hi></hi>
+  </div>
+  <hr>
+  <div id="app2">
+    <hi></hi>
+    <hi></hi>
+    <hi></hi>
+  </div>
+
+
+  <script>
+
+
+    let inko = {
+      data: function () {
+        return {
+          price: 32
+        }
+      },
+      template: '<p>値段は{{price}}円です</p>'
+    }
+
+    Vue.component('hi', {
+      data: function () {
+        return {
+          name: 'takashi'
+        }
+      },
+      template: '<p>こんにちは{{name}}</p>'
+    })
+
+    new Vue({
+      el: '#app1',
+      components: {
+        'hi': inko
+      }
+    })
+    new Vue({
+      el: '#app2',
+    })
+  </script>
+
+</body>
+
+</html>
